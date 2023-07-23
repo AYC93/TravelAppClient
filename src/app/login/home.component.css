@@ -1,0 +1,18 @@
+.loginSection {
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.appName {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.loginButton {
+    font-family: Arial, sans-serif;
+}

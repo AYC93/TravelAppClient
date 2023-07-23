@@ -1,0 +1,14 @@
+<div>
+    <!-- Linked to navbar component -->
+    <navbar [userEmail]="googleLogin.email ? googleLogin.email : ''"></navbar>
+    
+    <div class="container">
+        <table *ngIf="googleLogin.idToken">
+            <h2>Welcome, {{ googleLogin.email }}!</h2>
+            <!-- <button mat-raised-button color="basic" (click)="login()">Sign In</button> -->
+            <tr>
+                <button type="button" mat-raised-button color="basic" (click)="toDashboard()">Dashboard</button>
+            </tr>
+        </table>
+    </div>
+</div>

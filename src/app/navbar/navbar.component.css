@@ -1,0 +1,49 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    height: 50px;
+  }
+  
+.appName {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.sidenav-container {
+    width: 30%;
+    flex: 1;
+}
+  
+.sidenav-menu {
+    width: 30%;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    margin-right: 25px; 
+}
+
+.userEmail {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+} 
+
+.wrapText {
+  margin: 0px 5px;
+}
+
+@media (max-width: 600px) {
+    .userEmail {
+        display: none;
+    } 
+
+    .sidenav-menu {
+        width: 60%;
+    }
+}

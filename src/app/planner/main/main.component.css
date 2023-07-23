@@ -1,0 +1,19 @@
+table {
+    font-size: 14px;
+}
+
+th, tr, td {
+    padding: 10px;
+    height: 30px;
+}
+
+.planSection {
+    vertical-align: middle;
+}
+
+.weatherSection {
+    min-width: 140px;
+    width: fit-content;
+    text-align: center;
+    background-color: pink;
+}

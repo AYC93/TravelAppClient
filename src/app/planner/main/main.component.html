@@ -1,0 +1,64 @@
+<div>
+    <navbar [userEmail]="email"></navbar>
+
+    <div class="container">
+        <div class="buttonRight">
+            <button mat-stroked-button color="accent" [routerLink]="['/entry']">
+                <mat-icon>add_circle</mat-icon>Planner
+            </button>
+        </div>
+
+        <table>
+            <tbody *ngIf="combinedModel$ | async as combinedModels">
+                <mat-card style="margin-bottom: 20px" *ngFor="let c of combinedModels">
+                    <mat-card-content>
+                        <tr row="">
+                            <td class="planSection">
+                        <tr>
+                            <h4>Date: {{ c.planner.dateTime }}</h4>
+                        </tr>
+                        <tr>
+                            City: {{ c.planner.city }}
+                        </tr>
+                        <tr>
+                            Destination Type: {{ c.planner.destinationType }}
+                        </tr>
+                        <tr>
+                            Description: {{ c.planner.description }}
+                        </tr>
+                        <tr>
+                            Map
+                        </tr>
+                        <br>
+                        <tr>
+                            <a href='{{ c.planner.url }}' target="_blank">View Attachment</a>
+                        </tr>
+                        <!-- _blank for new tab -->
+                        <tr>
+                            <button mat-raised-button color="basic" (click)='deleteRow(c.planner.pid)'>Del</button>
+                        </tr>
+                        </td>
+                        <td class="weatherSection" *ngFor="let w of c.weatherTempInfo.weatherInfoList">
+                            <tr>
+                                <img src="https://openweathermap.org/img/wn/{{ w.icon }}@2x.png" alt="">
+                            </tr>
+                            <tr>
+                                <h4>{{ w.main }} {{ w.description }}</h4>
+                            </tr>
+                            <tr>
+                                Current Temp: {{ c.weatherTempInfo.tempInfo.temp }}
+                            </tr>
+                            <tr>
+                                Max Temp: {{ c.weatherTempInfo.tempInfo.tempMax }}
+                            </tr>
+                            <tr>
+                                Min Temp: {{ c.weatherTempInfo.tempInfo.tempMin }}
+                            </tr>
+                        </td>
+                        </tr>
+                    </mat-card-content>
+                </mat-card>
+            </tbody>
+        </table>
+    </div>
+</div>
