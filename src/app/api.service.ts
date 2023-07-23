@@ -4,8 +4,8 @@ import { firstValueFrom, Observable } from "rxjs";
 import { CombinedModel, FormField, ServerEmail } from "./models/model";
 import { LocalStorageService } from "./localstorage.service";
 const URL = 'fuzzy-authority-production.up.railway.app'
-const URL_ENTRY = '${URL}/api/entry'
-const URL_MAIN = '${URL}/api/main'
+const URL_ENTRY = URL + '/api/entry'
+const URL_MAIN = URL + '/api/main'
 
 @Injectable()
 export class ApiService {
