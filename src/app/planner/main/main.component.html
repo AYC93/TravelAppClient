@@ -38,7 +38,7 @@
                             <button mat-raised-button color="basic" (click)='deleteRow(c.planner.pid)'>Del</button>
                         </tr>
                         </td>
-                        <td class="weatherSection" *ngFor="let w of c.weatherTempInfo.weatherInfoList">
+                        <td class="weatherSection" *ngIf="c.weatherTempInfo.weatherInfoList[0] as w">
                             <tr>
                                 <img src="https://openweathermap.org/img/wn/{{ w.icon }}@2x.png" alt="">
                             </tr>
