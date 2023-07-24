@@ -10,14 +10,12 @@
 
     <form [formGroup]="form" (ngSubmit)="process()">
       <table>
-        <!-- To add calendar date and time -->
         <tr>
           <td class="tableHeader">Date</td>
           <td class="tableContent"><input class="font formFieldComponent" type="datetime-local" id="date"
               formControlName="date" placeholder="Input Date Here" matNativeControl></td>
         </tr>
 
-        <!-- To input description of travel plan -->
         <tr>
           <td class="tableHeader">Description</td>
           <td class="tableContent">
@@ -30,7 +28,7 @@
           <td class="tableHeader">City</td>
           <td class="tableContent">
             <mat-select class="font formFieldComponent" id="city" placeholder="City Name" formControlName="city">
-              <mat-option class="font" *ngFor="let city of svc.japCities" [value]="city" type="text" size="30">{{city}}
+              <mat-option class="font" *ngFor="let city of svc.japCities" [value]="city" type="text" size="30">{{ city }}
               </mat-option>
             </mat-select>
           </td>
@@ -41,20 +39,22 @@
           <td class="tableHeader">Destination Type</td>
           <td class="tableContent"><mat-select class="font formFieldComponent" id="destination"
               placeholder="Destination Type" formControlName="destination">
-              <mat-option class="font" *ngFor="let destination of svc.destinationType" [value]="destination" type="text"
-                size="70">{{
-                destination }}
+              <mat-option class="font" *ngFor="let destination of svc.destinationType" 
+                                        [value]="destination" type="text" size="70">
+                                    {{ destination }}
               </mat-option>
-            </mat-select></td>
+            </mat-select>
+          </td>
         </tr>
         <tr>
           <td class="tableHeader">Upload Document</td>
-          <td class="tableContent"><input class="font formFieldComponent" type="file" formControlName="file" #uploadDoc>
+          <td class="tableContent">
+            <input class="font formFieldComponent" type="file" formControlName="file" #uploadDoc>
           </td>
         </tr>
       </table>
       <button mat-flat-button color="accent" class="submitButton" type="submit"
-        [disabled]="form.invalid">Upload</button>
+                        [disabled]="form.invalid">Upload</button>
     </form>
   </div>
 </div>

@@ -1,8 +1,13 @@
-import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {  Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { GoogleApiService } from '../google-api.service';
 import { LocalStorageService } from '../localstorage.service';
+import { ReduxAppState } from '../redux/state.model';
+import { Store } from '@ngrx/store';
+import { emailSelector } from '../redux/selector';
+import { updateUserInfoAction } from '../redux/login/login.actions';
+import { ServerEmail } from '../models/model';
 // import { GoogleApiService } from '../google-api.service';
 
 @Component({
@@ -10,7 +15,7 @@ import { LocalStorageService } from '../localstorage.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent {
 
   email!: string
   emailId!:number
@@ -20,19 +25,20 @@ export class LoginComponent implements AfterViewInit {
   local = inject(LocalStorageService)
   googleLogin=inject(GoogleApiService)
 
-  // constructor(googleLogin: GoogleApiService) {
-  //   console.info(">>> email: " + (googleLogin.email))
-  //   console.info(">>> idToken: " + (googleLogin.idToken))
-  // }
+  constructor(private store: Store<ReduxAppState>) {
+    this.store.select(emailSelector).subscribe((email: string) => this.email = email);
+  }
 
-  ngAfterViewInit(): void {
-    this.email = this.googleLogin.email
-    console.info(">>> email: " + (this.googleLogin.email))
-    console.info(">>> idToken: " + (this.googleLogin.idToken))
-    if (this.email) {
+  ngDoCheck() {
+    if (this.email !== this.googleLogin.email && this.googleLogin.email !== "") {
+      this.email = this.googleLogin.email
+
       this.apiSvc.postEmailToBackend(this.email).subscribe({
         next: n => {
           console.log('Response from server... ', n)
+          // NgRx store user info
+          const userEmail: ServerEmail = { email: this.email, emailId: n.emailId }
+          this.store.dispatch(updateUserInfoAction({payload: userEmail}))
           // to convert back to int before sending to server later
           localStorage.setItem("emailIdString", n.emailId.toString())
           console.info("posted>>> " + this.email)
@@ -45,9 +51,4 @@ export class LoginComponent implements AfterViewInit {
   toDashboard(){
       this.router.navigate(['/main'])
   }
-
-  logout(){
-    this.googleLogin.logout()
-  } 
-
 }

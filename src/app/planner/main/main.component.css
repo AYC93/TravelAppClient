@@ -1,5 +1,6 @@
 table {
     font-size: 14px;
+    width:100%;
 }
 
 th, tr, td {
@@ -7,13 +8,55 @@ th, tr, td {
     height: 30px;
 }
 
+.matCardContent {
+    display: flex; 
+    height:fit-content; 
+    width: 98%;
+}
+
+.cardRow {
+    width: inherit; 
+    height:fit-content; 
+    display: flex;
+}
+
 .planSection {
-    vertical-align: middle;
+    display: block;
+    height: fit-content;
+    width: 100%;
+}
+
+.planSectionDateRow {
+    display: contents;
+}
+
+.planSectionRow {
+    width: 100%;
 }
 
 .weatherSection {
-    min-width: 140px;
-    width: fit-content;
-    text-align: center;
+    display: block;
+    height: auto;
+    width: 250px;
+    text-align: -webkit-center;
     background-color: pink;
+}
+
+@media (max-width: 600px) {
+    .cardRow { 
+        display: block;
+    }
+
+    .planSection {
+        width: 90%;
+        display: inline-block;
+        height: fit-content;
+    }
+    
+    .weatherSection {
+        display: inline-block;
+        height: fit-content;
+        width: 90%;
+        text-align: -webkit-center;
+    }
 }

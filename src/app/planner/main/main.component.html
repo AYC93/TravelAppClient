@@ -4,46 +4,60 @@
     <div class="container">
         <div class="buttonRight">
             <button mat-stroked-button color="accent" [routerLink]="['/entry']">
-                <mat-icon>add_circle</mat-icon>Planner
+                <mat-icon>add_circle</mat-icon>
+                Planner
             </button>
         </div>
 
         <table>
             <tbody *ngIf="combinedModel$ | async as combinedModels">
                 <mat-card style="margin-bottom: 20px" *ngFor="let c of combinedModels">
-                    <mat-card-content>
-                        <tr row="">
+                    <mat-card-content class="matCardContent">
+                        <tr class="cardRow">
                             <td class="planSection">
-                        <tr>
-                            <h4>Date: {{ c.planner.dateTime }}</h4>
-                        </tr>
-                        <tr>
-                            City: {{ c.planner.city }}
-                        </tr>
-                        <tr>
-                            Destination Type: {{ c.planner.destinationType }}
-                        </tr>
-                        <tr>
-                            Description: {{ c.planner.description }}
-                        </tr>
-                        <tr>
-                            Map
-                        </tr>
-                        <br>
-                        <tr>
-                            <a href='{{ c.planner.url }}' target="_blank">View Attachment</a>
-                        </tr>
-                        <!-- _blank for new tab -->
-                        <tr>
-                            <button mat-raised-button color="basic" (click)='deleteRow(c.planner.pid)'>Del</button>
-                        </tr>
-                        </td>
+                                <tr class="planSectionDateRow">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <h4>Date: {{ c.planner.dateTime }}</h4>
+                                        <button mat-icon-button color="accent" aria-label="deleteButton" (click)='deleteRow(c.planner.pid)'>
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>                        
+                                </tr>
+                                <tr class="planSectionRow">
+                                    City: {{ c.planner.city }}
+                                </tr>
+                                <tr class="planSectionRow">
+                                    Destination Type: {{ c.planner.destinationType }}
+                                </tr>
+                                <tr class="planSectionRow">
+                                    Description: {{ c.planner.description }}
+                                </tr>
+                                <tr class="planSectionRow">
+                                        Map:
+                                        <google-map [center]="
+                                                            {   lat: +(c.weatherTempInfo.weatherLoc.lat), 
+                                                                lng: +(c.weatherTempInfo.weatherLoc.lon)}" 
+                                                                [zoom]="11" [options]="
+                                                                    {mapTypeControl:false,
+                                                                    zoomControl:false,
+                                                                    streetViewControl:false}"
+                                                                    width="200px" height="200px">
+                                            <map-marker [position]="{lat: +(c.weatherTempInfo.weatherLoc.lat), 
+                                                                    lng: +(c.weatherTempInfo.weatherLoc.lon)}">
+                                            </map-marker>
+                                        </google-map>
+                                </tr>
+                                <br>
+                                <tr *ngIf="c.planner.url">
+                                    <a href='{{ c.planner.url }}' target="_blank">View Attachment</a>
+                                </tr>
+                            </td>
                         <td class="weatherSection" *ngIf="c.weatherTempInfo.weatherInfoList[0] as w">
                             <tr>
                                 <img src="https://openweathermap.org/img/wn/{{ w.icon }}@2x.png" alt="">
                             </tr>
                             <tr>
-                                <h4>{{ w.main }} {{ w.description }}</h4>
+                                <h4>{{ w.main }}, {{ w.description }}</h4>
                             </tr>
                             <tr>
                                 Current Temp: {{ c.weatherTempInfo.tempInfo.temp }}

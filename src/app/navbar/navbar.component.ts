@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { GoogleApiService } from 'src/app/google-api.service';
+import { ReduxAppState } from '../redux/state.model';
 
 @Component({
   selector: 'navbar',
@@ -8,14 +10,12 @@ import { GoogleApiService } from 'src/app/google-api.service';
 })
 export class NavBarComponent implements OnInit {
   googleSvc = inject(GoogleApiService)
+  store = inject(Store<ReduxAppState>)
 
   @Input() 
   userEmail!: string
 
-  constructor() { }
-
   ngOnInit(): void {
-
   }
   
   // authenticate login
