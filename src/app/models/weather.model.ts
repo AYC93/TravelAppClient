@@ -5,6 +5,7 @@ export interface WeatherQuery {
   export interface WeatherTempData{
     weatherInfoList: WeatherData[]
     tempInfo: TempData
+    weatherLoc:WeatherLoc
   }
   
   export interface WeatherData {
