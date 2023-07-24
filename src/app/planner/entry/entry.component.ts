@@ -54,20 +54,19 @@ export class EntryComponent implements OnInit {
     }
 
     this.apiSvc.postFormToBackend(formField, this.email).then((resp) => {
-      console.log('Response from server... ', resp)
-      console.info("posted>>> " + formField.city + formField.description)
+      console.info("posted>>> City: " + formField.city + " Description: " + formField.description)
+      console.log('Response from server... PID: ', resp.pid)
       // prompt to show successful post
       this.snackBar.open('Entry sucessful!', 'Close', {
         duration: 2500,
         panelClass: 'success-snackbar'
       })
-
+      this.form.reset()
     }).catch(
       err => {
         console.log('Error... ', err)
       }
     )
-    this.form.reset
   }
 
   private createForm(): FormGroup {

@@ -35,14 +35,7 @@ export class ApiService {
         formData.set('city', formField.city)
         formData.set('destination', formField.destination)
         formData.set('email', email)
-        const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data')
         return firstValueFrom(this.http.post<any>(URL_ENTRY + '/post', formData))
-            .then(p => {
-                console.log('Form sent sucessfully, file URL: ', p.url)
-            }
-            ).catch(
-                err => console.error(err)
-            )
     }
 
     getDataFromServer(emailId: number):Promise<CombinedModel[]>{
