@@ -42,7 +42,7 @@ export class ApiService {
         emailId = this.local.emailIdLocalPull()
         const params = new HttpParams()
                         .set('emailId', emailId)
-        console.log('emailID params: ' + params)
+        console.log('params: ' + params)
         return firstValueFrom(this.http.get<CombinedModel[]>(URL_MAIN, {params}))
     }
 
