@@ -10,9 +10,9 @@ import { hydrationMetaReducer } from './redux/hydration.reducer';
   styleUrls: ['./app.component.css']
 })
 
-export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
-
 export class AppComponent {
   router = inject(Router)
   store = inject(Store<ReduxAppState>)
 }
+
+export const metaReducers: MetaReducer[] = [hydrationMetaReducer];

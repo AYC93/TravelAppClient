@@ -1,4 +1,4 @@
-import { WeatherTempData } from "./weather.model"
+import { WeatherLoc, WeatherTempData } from "./weather.model"
 
 export interface FormField{
     date: Date
@@ -33,5 +33,5 @@ export interface ServerField{
 export interface CombinedModel{
     planner: ServerField
     weatherTempInfo: WeatherTempData
-    
+    weatherLoc: WeatherLoc
 }
