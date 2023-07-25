@@ -1,0 +1,6 @@
+{
+    "version": 2,
+    "name": "travelappclient",
+    "builds": [{ "src": "package.json", "use": "@vercel/node" }],
+    "routes": [{ "src": "/(.*)", "dest": "/dist/project/$1" }]
+  }
