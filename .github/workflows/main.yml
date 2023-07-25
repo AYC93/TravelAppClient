@@ -1,9 +1,5 @@
 name: Continuous Build and Deploy
 
-env:
-    VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-    VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 on:
     push:
         branches:
@@ -16,7 +12,7 @@ jobs:
             
         steps:
             - name: clone
-            uses: actions/checkout@v2
+              uses: actions/checkout@v2
             
             - name: build
               run: npm install
