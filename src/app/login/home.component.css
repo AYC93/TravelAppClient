@@ -16,3 +16,18 @@
 .loginButton {
     font-family: Arial, sans-serif;
 }
+
+.copyrightSection {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.copyright {
+    color: #333;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 5px 10px;
+}
