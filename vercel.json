@@ -3,5 +3,5 @@
     "name": "project",
     "builds": [{ "src": "package.json", "use": "@vercel/node" }],
     "framework": "angular",
-    "routes": [{ "src": "/(.*)", "dest": "/dist/project/$1" }]
+    "routes": [{ "src": "/(.*)", "dest": "/dist/project/" }]
   }
