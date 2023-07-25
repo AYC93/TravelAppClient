@@ -1,7 +1,0 @@
-{
-    "version": 2,
-    "name": "project",
-    "builds": [{ "src": "package.json", "use": "@vercel/node" }],
-    "framework": "angular",
-    "routes": [{ "src": "/(.*)", "dest": "/dist/project/" }]
-  }
