@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">shiokplanners</string>
+    <string name="title_activity_main">shiokplanners</string>
+    <string name="package_name">work.shiok.planners</string>
+    <string name="custom_url_scheme">work.shiok.planners</string>
+</resources>

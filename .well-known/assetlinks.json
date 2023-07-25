@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "shiokplanners",
+      "package_name": "work.shiok.planners",
+      "sha256_cert_fingerprints":
+      ["C7:E7:7C:78:68:1F:2F:18:CC:BC:3C:CA:D4:C9:67:E7:9F:1E:76:7D:F2:AB:03:93:4B:D3:B6:10:62:7C:DB:54"]
+    }
+  }
+]
