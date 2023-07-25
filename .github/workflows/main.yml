@@ -16,6 +16,7 @@ jobs:
             
             - name: build
               run: npm install
+                   npm run build --prod
                      
             - name: deploy
               uses: amondnet/vercel-action@v20
