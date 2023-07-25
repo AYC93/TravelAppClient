@@ -86,8 +86,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.json",
-              "src/images"            ],
+              "src/assets/manifest.json",
+              "src/assets/images"            
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
