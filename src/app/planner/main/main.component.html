@@ -17,7 +17,7 @@
                             <td class="planSection">
                                 <tr class="planSectionDateRow">
                                     <div style="display: flex; justify-content: space-between;">
-                                        <h4>Date: {{ c.planner.dateTime }}</h4>
+                                        <h4>Date: {{ c.planner.dateTime | date:'dd-MM-yyyy hh:mm:ss a' }}</h4>
                                         <button mat-icon-button color="accent" aria-label="deleteButton" (click)='deleteRow(c.planner.pid)'>
                                             <mat-icon>delete</mat-icon>
                                         </button>

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { GoogleApiService } from 'src/app/google-api.service';
@@ -23,9 +23,9 @@ export class EntryComponent implements OnInit {
   @ViewChild('uploadDoc')
   fileRef!: ElementRef
   email!: string
-  form!: FormGroup
-
+  fileSizeExceeded = false
   
+  form!: FormGroup
   fb = inject(FormBuilder)
   router = inject(Router)
   snackBar = inject(MatSnackBar)
@@ -82,7 +82,7 @@ export class EntryComponent implements OnInit {
       description: this.fb.control<string>('', [Validators.required, Validators.minLength(15)]),
       city: this.fb.control<string>('', [Validators.required]),
       destination: this.fb.control<string>('', [Validators.required]),
-      file: this.fb.control<File | null>(null)
+      file: this.fb.control<File | null>(null, [this.fileSizeValidators])
     })
   }
 
@@ -90,6 +90,31 @@ export class EntryComponent implements OnInit {
   isLoggedIn(): boolean {
     return this.googleSvc.isLoggedIn()
   }
+
+  private fileSizeValidators(control: AbstractControl): ValidationErrors | null{
+    const file = control.value as File
+    const maxSize = 20 * 1024 * 1024
+
+    if (file && file.size > maxSize){
+      return { fileSizeExceeded: true }
+    }
+    return null
+  }
+
+  fileSizeHTMLValidation(event: Event):void {
+    const fileUpload = event.target as HTMLInputElement
+    const file = fileUpload.files?.[0]
+
+    this.fileSizeExceeded = file ? file.size > 20 * 1024 * 2 : false
+
+    const fileControl = this.form.get('file')
+    if (fileControl)
+    if (this.fileSizeExceeded) {
+      fileControl.setErrors({ fileSizeExceeded: true })
+    } else {
+      fileControl.setErrors(null)
+  }
+}
 
   //logout function
   logout() {

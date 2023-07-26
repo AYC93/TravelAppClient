@@ -34,6 +34,16 @@ tr, td {
     width: 95%;
 }
 
+.hintComponent, .warningComponent {
+    font-size: 10px;
+    color: #888;
+    margin-top: 5px;
+  }
+
+.warningComponent{
+    color: red;
+}
+
 @media (max-width: 600px) {
     table {
         padding: 0px;
