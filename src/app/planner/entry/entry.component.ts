@@ -52,6 +52,9 @@ export class EntryComponent implements OnInit {
     // weatherQuery.city = this.form.get('city')?.value as string
     // weather info process
   process() {
+    if (this.form.invalid) {
+      return
+    }
     const f: File = this.fileRef.nativeElement.files[0]
     const formField: FormField = {
       ... this.form.value,
@@ -101,20 +104,22 @@ export class EntryComponent implements OnInit {
     return null
   }
 
-  fileSizeHTMLValidation(event: Event):void {
+  fileSizeHTMLValidation(event: Event): void {
     const fileUpload = event.target as HTMLInputElement
     const file = fileUpload.files?.[0]
 
-    this.fileSizeExceeded = file ? file.size > 20 * 1024 * 2 : false
+    this.fileSizeExceeded = file ? file.size > 20 * 1024 * 1024 : false
 
     const fileControl = this.form.get('file')
-    if (fileControl)
-    if (this.fileSizeExceeded) {
-      fileControl.setErrors({ fileSizeExceeded: true })
-    } else {
-      fileControl.setErrors(null)
+    if (fileControl) {
+      if (this.fileSizeExceeded) {
+        fileControl.setErrors({ fileSizeExceeded: true })
+      } else {
+        fileControl.setErrors(null)
+      }
+      fileControl.updateValueAndValidity()
+    }
   }
-}
 
   //logout function
   logout() {

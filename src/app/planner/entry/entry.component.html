@@ -19,8 +19,9 @@
         <tr>
           <td class="tableHeader">Description</td>
           <td class="tableContent">
-            <textarea matInput class="font formFieldComponent" id="description" formControlName="description"
-              placeholder="Please describe the itinerary" rows="10"></textarea>
+            <textarea matInput #textarea class="font formFieldComponent" id="description" formControlName="description"
+              placeholder="Please describe the itinerary, minimum 15 characters" rows="10"></textarea>
+              <div class="hintComponent" align="end">{{textarea.value.length}}/1000</div>
           </td>
         </tr>
         <!-- dropdown option for japanese cities -->
@@ -58,7 +59,7 @@
         </tr>
       </table>
       <button mat-flat-button color="accent" class="submitButton" type="submit"
-                        [disabled]="form.invalid">Upload</button>
+                        [disabled]="form.invalid || fileSizeExceeded">Upload</button>
     </form>
   </div>
 </div>
